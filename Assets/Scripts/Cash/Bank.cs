@@ -1,19 +1,21 @@
+using TMPro;
 using UnityEngine;
 
 public class Bank : MonoBehaviour
 {
-    private float money;
+    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] float money;
 
-    public delegate void AddWallet(float cash);
-    public static AddWallet addWallet;
+    public float Money { get => money; set => money = value; }
 
-    private void Start()
+    public delegate void CheckCash(float cash);
+    public static CheckCash checkCash;
+
+    private void Start() => checkCash += Wallet;
+
+    public void Wallet(float cash)
     {
-        Money.addMoney += Wallet;
-    }
-    void Wallet(float cash)
-    {
-        money += cash;
-        addWallet.Invoke(money);
+        Money += cash;
+        text.text = Money.ToString();
     }
 }
