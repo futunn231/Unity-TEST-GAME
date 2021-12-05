@@ -2,33 +2,40 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private IMovable movable;
+    [Header("Camera")]
+    [SerializeField] Camera cam;
 
-    private void Start()
-    {
-        movable = new MovableX();
-    }
+    [Header("Speed player")]
+    [SerializeField] byte speed;
 
-    private void Update()
-    {
-        Move();
-        movable.Move(transform);
-    }
+    [Header("Move")]
+    [SerializeField] bool move;
 
-    void ChangeMovable(IMovable movable)
-    {
-        this.movable = movable;
-    }
+    [Header("Layer Ground")]
+    [SerializeField] LayerMask ground;
 
-    void Move()
+    Ray ray;
+    RaycastHit hit;
+
+    void FixedUpdate() => PlayerMove();
+    void PlayerMove()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetMouseButton(0))
         {
-            ChangeMovable(new MovableX());
+            move = true;
+            ray = cam.ScreenPointToRay(Input.mousePosition);
         }
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (move)
         {
-            ChangeMovable(new MovableY());
+            if (Physics.Raycast(ray, out hit, 999, ground))
+            {
+                //Vector3 hitPos = new Vector3(hit.point.x, 0, hit.point.z);
+                transform.position = Vector3.MoveTowards(transform.position, hit.point, speed * Time.fixedDeltaTime);
+            }
+            if (transform.position.x == hit.point.x)
+            {
+                move = false;
+            }
         }
     }
 }
