@@ -13,12 +13,8 @@ public class Purse : MonoBehaviour
         coins = PlayerPrefs.GetInt("Coins");
         text.text = coins.ToString();
     }
-
-    private void Start() => bank = new Bank();
     private void OnEnable() => Coin.coinD += Coins;
     private void OnDisable() => Coin.coinD -= Coins;
-
-
     void Coins(int coin)
     {
         coins += coin;

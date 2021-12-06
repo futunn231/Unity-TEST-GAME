@@ -1,12 +1,7 @@
 public class Bank
 {
-    int coin { get; set; }
+    int coin;
 
     public int Coins { get => coin; }
-
-    public void Wallet(int coins)
-    {
-        coin += coins;
-        
-    }
+    public void Wallet(int coins) => coin += coins;
 }
