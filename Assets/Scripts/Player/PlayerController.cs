@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, 999, ground))
             {
-                //Vector3 hitPos = new Vector3(hit.point.x, 0, hit.point.z);
                 transform.position = Vector3.MoveTowards(transform.position, hit.point, speed * Time.fixedDeltaTime);
             }
             if (transform.position.x == hit.point.x)
