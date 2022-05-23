@@ -1,17 +1,10 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+class PlayerControllerG1 : MonoBehaviour
 {
-    [Header("Camera")]
     [SerializeField] Camera cam;
-
-    [Header("Speed player")]
     [SerializeField] byte speed;
-
-    [Header("Move")]
     [SerializeField] bool move;
-
-    [Header("Layer Ground")]
     [SerializeField] LayerMask ground;
 
     Ray ray;
@@ -27,13 +20,10 @@ public class PlayerController : MonoBehaviour
         }
         if (move)
         {
-            if (Physics.Raycast(ray, out hit, 999, ground))
+            if (Physics.Raycast(ray, out hit, 100f, ground))
             {
                 transform.position = Vector3.MoveTowards(transform.position, hit.point, speed * Time.fixedDeltaTime);
-            }
-            if (transform.position.x == hit.point.x)
-            {
-                move = false;
+                if (Vector2.Distance(transform.position, hit.transform.position) <= 0.1f) move = false;
             }
         }
     }
