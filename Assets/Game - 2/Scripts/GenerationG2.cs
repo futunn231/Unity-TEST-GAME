@@ -6,7 +6,7 @@ namespace Generation
     class GenerationG2 : MonoBehaviour
     {
         [SerializeField] GameObject wall;
-        [SerializeField] List<GameObject> parent;
+        [SerializeField] GameObject parent;
 
         [SerializeField] SpawnerG2 spawn;
 
@@ -20,7 +20,7 @@ namespace Generation
                 for (int z = 0; z < maze.GetLength(1); z += 4)
                 {
                     WallG2 wal = Instantiate(wall).GetComponent<WallG2>();
-                    wal.gameObject.transform.parent = parent[0].transform;
+                    wal.gameObject.transform.parent = parent.transform;
                     wal.gameObject.transform.position = new Vector3(x, 0, z);
                     wal.downWall.SetActive(maze[x, z].WallBottom);
                     wal.leftWall.SetActive(maze[x, z].WallLeft);

@@ -571,8 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 8330090185017035184, guid: 81c67bde508f2db419440848e8e5079a, type: 3}
-  parent:
-  - {fileID: 443615207}
+  parent: {fileID: 443615207}
   spawn: {fileID: 2136323733}
   Width: 20
   Height: 20
@@ -590,7 +589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7472701215754323649, guid: 079a17d25fd32c74b82aceb61758cbf4, type: 3}
   enemy: {fileID: 8436271193126007338, guid: 5c6b28c94be24fd43845b51a670c789d, type: 3}
-  meshSpawn: {fileID: 0}
   points: []
   countEnemy: 20
   countPlayer: 5
