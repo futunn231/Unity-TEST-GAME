@@ -7,6 +7,9 @@ class PlayerClone : MonoBehaviour
     Spawner spawner;
     public Spawner setSpawn { set => spawner = value; }
 
+    Cell cel;
+    public Cell setCell { set => cel = value; }
+
     public int HP
     {
         get => hp;
@@ -15,6 +18,7 @@ class PlayerClone : MonoBehaviour
             hp -= value;
             if (hp <= 0)
             {
+                cel.busy = false;
                 spawner.AddCount(1);
                 Destroy(gameObject);
             }

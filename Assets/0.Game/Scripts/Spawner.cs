@@ -52,6 +52,7 @@ class Spawner : MonoBehaviour
                 {
                     PlayerClone p = Instantiate(player, points[i].transform.position, Quaternion.identity).GetComponent<PlayerClone>();
                     p.setSpawn = this;
+                    p.setCell = points[i];
                     p.transform.parent = points[i].transform;
                     points[i].busy = true;
                     countPlayer--;
