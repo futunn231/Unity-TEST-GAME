@@ -1,6 +1,6 @@
 using UnityEngine;
 
-class CellG2 : MonoBehaviour
+class Cell : MonoBehaviour
 {
     public bool busy = false;
 }
