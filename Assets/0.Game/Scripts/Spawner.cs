@@ -10,15 +10,21 @@ class Spawner : MonoBehaviour
 
     [SerializeField] int countEnemy, countPlayer;
 
-    public void AddListPoint(List<Cell> g) { for (int i = 0; i < g.Count; i++) points.Add(g[i]); }
-    public void AddCount(int i)
+    public delegate void AddIndexPlayer();
+    public AddIndexPlayer indexPlayer;
+
+    public delegate void AddIndexEnemy();
+    public AddIndexEnemy indexEnemy;
+
+    void Start()
     {
-        switch (i)
-        {
-            case 0: countEnemy++; break;
-            case 1: countPlayer++; break;
-        }
+        indexPlayer = IndexPlayer;
+        indexEnemy = IndexEnemy;
     }
+
+    public void AddListPoint(List<Cell> g) { foreach (var item in g) points.Add(item); }
+    void IndexPlayer() => countPlayer++;
+    void IndexEnemy() => countEnemy++;
     public void Play()
     {
         StartCoroutine(SpawnEnemy());
@@ -28,10 +34,10 @@ class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.2f);
-            while (countEnemy > 0)
+            yield return new WaitForSeconds(0.1f);
+            if (countEnemy > 0)
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.1f);
                 int i = Random.Range(0, points.Count);
                 Enemy p = Instantiate(enemy, points[i].transform.position + Vector3.up * 5, Quaternion.identity).GetComponent<Enemy>();
                 p.setSpawn = this;
@@ -43,10 +49,10 @@ class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
-            while (countPlayer > 0)
+            yield return new WaitForSeconds(0.5f);
+            if (countPlayer > 0)
             {
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(0.5f);
                 int i = Random.Range(0, points.Count);
                 if (!points[i].busy)
                 {

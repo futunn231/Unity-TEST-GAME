@@ -424,7 +424,7 @@ MonoBehaviour:
   player: {fileID: 7472701215754323649, guid: 079a17d25fd32c74b82aceb61758cbf4, type: 3}
   enemy: {fileID: 8436271193126007338, guid: 5c6b28c94be24fd43845b51a670c789d, type: 3}
   points: []
-  countEnemy: 20
+  countEnemy: 15
   countPlayer: 5
 --- !u!20 &2153995398899372312
 Camera:

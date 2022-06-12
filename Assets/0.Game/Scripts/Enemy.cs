@@ -13,6 +13,7 @@ class Enemy : MonoBehaviour
     Spawner spawner;
     public Spawner setSpawn { set => spawner = value; }
 
+
     void Start()
     {
         int i = Random.Range(0, 2);
@@ -27,7 +28,7 @@ class Enemy : MonoBehaviour
     {
         if (other.gameObject.layer == 0)
         {
-            spawner.AddCount(0);
+            spawner.indexEnemy?.Invoke();
             Destroy(gameObject);
         }
         else if (other.gameObject.layer == 6)
@@ -37,6 +38,7 @@ class Enemy : MonoBehaviour
                 case Weapon.rocket: other.GetComponent<PlayerClone>().Damage((int)weapon); break;
                 case Weapon.bomb: other.GetComponent<PlayerClone>().Damage((int)weapon); break;
             }
+            spawner.indexEnemy?.Invoke();
             Destroy(gameObject);
         }
     }

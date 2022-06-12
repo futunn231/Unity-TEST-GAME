@@ -5,12 +5,12 @@ class PlayerClone : MonoBehaviour
     [SerializeField] int hp;
 
     Spawner spawner;
-    public Spawner setSpawn { set => spawner = value; }
-
     Cell cel;
+
+    public Spawner setSpawn { set => spawner = value; }
     public Cell setCell { set => cel = value; }
 
-    public int HP
+    int HP
     {
         get => hp;
         set
@@ -19,7 +19,7 @@ class PlayerClone : MonoBehaviour
             if (hp <= 0)
             {
                 cel.busy = false;
-                spawner.AddCount(1);
+                spawner.indexPlayer?.Invoke();
                 Destroy(gameObject);
             }
         }
