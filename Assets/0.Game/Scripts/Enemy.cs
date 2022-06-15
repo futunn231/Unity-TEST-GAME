@@ -7,7 +7,7 @@ enum Weapon
 class Enemy : MonoBehaviour
 {
     int speed = 3;
-
+    int damage;
     Weapon weapon;
 
     Spawner spawner;
@@ -19,8 +19,8 @@ class Enemy : MonoBehaviour
         int i = Random.Range(0, 2);
         switch (i)
         {
-            case 0: weapon = Weapon.rocket; break;
-            case 1: weapon = Weapon.bomb; break;
+            case 0: weapon = Weapon.rocket; damage = 1; break;
+            case 1: weapon = Weapon.bomb; damage = 2; break;
         }
     }
     void Update() => transform.Translate(Vector3.down * speed * Time.deltaTime);
@@ -35,8 +35,8 @@ class Enemy : MonoBehaviour
         {
             switch (weapon)
             {
-                case Weapon.rocket: other.GetComponent<PlayerClone>().Damage((int)weapon); break;
-                case Weapon.bomb: other.GetComponent<PlayerClone>().Damage((int)weapon); break;
+                case Weapon.rocket: other.GetComponent<PlayerClone>().Damage(damage); break;
+                case Weapon.bomb: other.GetComponent<PlayerClone>().Damage(damage); break;
             }
             spawner.indexEnemy?.Invoke();
             Destroy(gameObject);
