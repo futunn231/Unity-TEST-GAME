@@ -421,8 +421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070f13460794fdd4b8cf425c449d6c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7472701215754323649, guid: 079a17d25fd32c74b82aceb61758cbf4, type: 3}
-  enemy: {fileID: 8436271193126007338, guid: 5c6b28c94be24fd43845b51a670c789d, type: 3}
+  player: {fileID: 3968858113392443494, guid: 079a17d25fd32c74b82aceb61758cbf4, type: 3}
+  enemy: {fileID: 8436271193126007383, guid: 5c6b28c94be24fd43845b51a670c789d, type: 3}
   points: []
   countEnemy: 15
   countPlayer: 5

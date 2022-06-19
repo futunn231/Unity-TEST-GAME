@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 class Spawner : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject enemy;
+    [SerializeField] PlayerClone player;
+    [SerializeField] Enemy enemy;
 
     [SerializeField] List<Cell> points;
 
@@ -39,7 +39,7 @@ class Spawner : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.1f);
                 int i = Random.Range(0, points.Count);
-                Enemy p = Instantiate(enemy, points[i].transform.position + Vector3.up * 5, Quaternion.identity).GetComponent<Enemy>();
+                Enemy p = Instantiate(enemy, points[i].transform.position + Vector3.up * 5, Quaternion.identity);
                 p.setSpawn = this;
                 countEnemy--;
             }
@@ -56,7 +56,7 @@ class Spawner : MonoBehaviour
                 int i = Random.Range(0, points.Count);
                 if (!points[i].busy)
                 {
-                    PlayerClone p = Instantiate(player, points[i].transform.position, Quaternion.identity).GetComponent<PlayerClone>();
+                    PlayerClone p = Instantiate(player, points[i].transform.position, Quaternion.identity);
                     p.setSpawn = this;
                     p.setCell = points[i];
                     p.transform.parent = points[i].transform;
